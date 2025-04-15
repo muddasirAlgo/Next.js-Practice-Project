@@ -16,33 +16,32 @@ import {
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import ROUTES from "@/constants/routes";
-import { SIDEBAR } from "./dashbaord_routes";
+import { SIDEBAR } from "../../../constants/dashbaord_routes";
 import { SVG } from "@/assets/svg";
-import ICONS from "@/assets/icons";
 import { PNG } from "@/assets/png";
 
 function SidebarContents() {
     const { open, setOpenMobile } = useSidebar();
     const router = useRouter();
     const pathName = usePathname();
-    const handleNavigation = async (route: string) => {
-
+    const handleNavigation = (route: string) => {
+        router.push(`http://localhost:3000/${route}`);
 
     };
     return (
         <>
             <SidebarHeader className="bg-white text-primary p-2 flex items-center">
                 <div
-                    className={`flex-1 ${open ? "flex justify-center w-full" : "flex-col items-center"
+                    className={`flex-1 ${open ? "flex justify-between w-full" : "flex-col items-center"
                         }`}
                 >
                     {/* Logo Section */}
                     <div
                         className={`${open ? "justify-start" : "mb-4 justify-center"
-                            } flex items-center cursor-pointer gap-2`}
-                        onClick={() => handleNavigation(ROUTES.auth.forgot)}
+                            } flex items-center cursor-pointer`}
+                        onClick={() => handleNavigation(ROUTES.dashboard.main)}
                     >
-                        <Image
+                        {/* <Image
                             src={open ? SVG.LOGO : SVG.LOGO}
                             alt="Logo"
                             className="select-none mb-2 pointer-events-none"
@@ -58,20 +57,35 @@ function SidebarContents() {
                             placeholder="blur"
                             blurDataURL={SVG.LOGO}
                             loading="eager"
+                        /> */}
+                        <div className={`flex-1 ${open ? "flex mx-8 items-center w-full" : "flex-col items-center"
+                        }`}>
+                        
+                            <Image
+                            src={SVG.LOGO}
+                            alt="Logo"
+                            className={open ? "mr-4 select-none mb-2 pointer-events-none" : "mx-auto"}
+                            width={open ? 60 : 40}
+                            height={open ? 60 : 40}
+                            priority
                         />
+                            {open && (
+                                <span className={"font-medium font-poppins text-[20px]"}>Metrix</span>
+                            )}
+                            </div>
 
-                        <h1 className="font-medium font-poppins text-[20px]">{"Metrix"}</h1>
+
 
 
                     </div>
                     {/* Sidebar Trigger Button (Menu/X icon) */}
-                    {/* <SidebarTrigger>
+                    <SidebarTrigger>
                         {open ? (
                             <X className="h-6 w-6 text-primary" />
                         ) : (
                             <Menu className={`h-6 w-6 text-primary`} />
                         )}
-                    </SidebarTrigger> */}
+                    </SidebarTrigger>
                 </div>
             </SidebarHeader>
             <SidebarContent className="bg-white text-primary overflow-auto scrollbar-hidden">
@@ -87,16 +101,17 @@ function SidebarContents() {
                             }}
                         >
                             <SidebarMenuButton
-                                className={`hover:bg-primaryColor hover:text-white hover:px-4 py-6 font-poppins text-[14px] ${open ? "px-8" : "px-2 "
+                                className={`hover:bg-primaryColor hover:text-white hover:px-4 py-6 font-poppins text-[14px] ${open ? "px-8" : "px-2"
                                     } flex items-center ${pathName === sidebarItem.link
                                         ? "bg-primaryColor text-primary"
                                         : ""
                                     }`}
                                 onClick={() => handleNavigation(sidebarItem.link)}
                             >
-                                {open && (
-                                    <span className={open ? "mr-2 " : "mx-auto"}>{sidebarItem.icon}</span>
-                                )}
+                                <span className={open ? "mr-2" : "mx-auto flex hover:text-white "}>
+                                    {sidebarItem.icon}
+                                </span>
+
                                 {/* <Image
                                     src={sidebarItem.icon}
                                     alt={sidebarItem.label}
@@ -182,30 +197,30 @@ function SidebarContents() {
                                 {/* Text below both the image and the first text */}
                                 {open && (
                                     <p className="text-primary font-poppins font-light text-[12px] mt-4">
-                                        Upgrade your account 
+                                        Upgrade your account
                                     </p>
                                 )}
                             </div>
                             <SidebarMenuButton
-                            className={`hover:bg-[#cc5f5f40] py-6 hover:text-white ${open ? "px-4" : "px-2"
-                                } flex items-center ${pathName === "/dashboard/profile"
-                                    ? "bg-primary text-primary"
-                                    : ""
-                                }`}
-                            onClick={() => handleNavigation("/dashboard/profile")}
-                        >
-                            <Image
-                                src={PNG.LogOut}
-                                alt="Account"
-                                className={open ? "mr-4" : "mx-auto"}
-                                width={open ? 30 : 40}
-                                height={open ? 30 : 40}
-                                priority
-                            />
-                            {open && <span className="text-[#CC5F5F]">Log Out</span>}
-                        </SidebarMenuButton>
+                                className={`hover:bg-[#cc5f5f40] py-6 hover:text-white ${open ? "px-4" : "px-2"
+                                    } flex items-center ${pathName === "/dashboard/profile"
+                                        ? "bg-primary text-primary"
+                                        : ""
+                                    }`}
+                                onClick={() => handleNavigation("/signin")}
+                            >
+                                <Image
+                                    src={PNG.LogOut}
+                                    alt="Account"
+                                    className={open ? "mr-4" : "mx-auto"}
+                                    width={open ? 30 : 40}
+                                    height={open ? 30 : 40}
+                                    priority
+                                />
+                                {open && <span className="text-[#CC5F5F]">Log Out</span>}
+                            </SidebarMenuButton>
                         </div>
-                        
+
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarFooter>

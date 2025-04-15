@@ -9,5 +9,6 @@ export const PNG = {
     Rewards: "/static/assets/png/rewards.png",
     LogOut: "/static/assets/png/Logout.png",
     Profile: "/static/assets/png/profile.png",
+    Image: "/static/assets/png/image.png",
   };
   

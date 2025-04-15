@@ -4,11 +4,14 @@ import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { Bell, ChevronDown } from 'lucide-react'
 
-export default function Navbar() {
+interface NavbarProps {
+    title?: string
+}
+export default function Navbar({ title = 'Dashboard' }: NavbarProps) {
     return (
         <div className="w-full flex items-center justify-between px-6 py-4 border-b bg-white">
             {/* Left: Title */}
-            <h1 className="text-[20px] font-medium font-poppins text-gray-800">Dashboard</h1>
+            <h1 className="text-[20px] font-medium font-poppins text-gray-800">{title}</h1>
 
             {/* Right: Actions */}
             <div className="flex items-center gap-4">

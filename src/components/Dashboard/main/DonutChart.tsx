@@ -13,7 +13,7 @@ const COLORS = ['#6366f1', '#c7d2fe', '#facc15']
 export default function DonutChart() {
   return (
     <div className="flex justify-center">
-      <PieChart width={200} height={200}>
+      <PieChart width={200} height={200} >
         <Pie
           data={data}
           innerRadius={60}
@@ -23,7 +23,7 @@ export default function DonutChart() {
           dataKey="value"
         >
           {data.map((_, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            <Cell className='drop-shadow-lg' key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
       </PieChart>
