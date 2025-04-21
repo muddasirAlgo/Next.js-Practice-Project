@@ -10,9 +10,11 @@ import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ChevronDown, ChevronLeft, ChevronRight, CopyIcon, Filter, Share } from "lucide-react";
+import CreateOrderModal from "@/components/Dashboard/orders/CreateOrderModal";
 
 export default function OrdersPage() {
     const [page, setPage] = useState(1);
+    const [open, setOpen] = useState(false);
 
     const orderData = [
         { id: 1, customer: "Janet Adebayo", date: "12 Aug 2022 - 12:25 am", type: "Home Delivery", tracking: "9348fjr73", total: "₦25,000.00", status: "Completed" },
@@ -32,12 +34,13 @@ export default function OrdersPage() {
             <div className="p-4 flex justify-between">
                 <h1 className="text-[16px] font-medium font-poppins text-[#45464E]">Orders Summary</h1>
                 <div>
-                    <LoadingButton type="submit" className="w-full font-poppins rounded-xl font-light bg-primaryColor hover:bg-authBg hover:text-black text-white">
+                    <LoadingButton type="submit" onClick={() => setOpen(true)} className="w-full font-poppins rounded-xl font-light bg-primaryColor hover:bg-authBg hover:text-black text-white">
                         <span className="flex items-center gap-2">
                             <span>+</span>
                             Create a New Order
                         </span>
                     </LoadingButton>
+                    <CreateOrderModal open={open} onClose={() => setOpen(false)} />
                 </div>
             </div>
 

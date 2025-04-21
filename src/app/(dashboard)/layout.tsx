@@ -1,8 +1,8 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import Navbar from '@/components/Dashboard/main/navBar'
-import SidebarWrapper from '@/components/Dashboard/main/sideBar'
+import Navbar from '@/components/Dashboard/main/NavBar'
+import SidebarWrapper from '@/components/Dashboard/main/SideBar'
 
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {

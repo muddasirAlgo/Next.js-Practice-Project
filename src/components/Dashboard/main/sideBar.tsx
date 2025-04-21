@@ -103,7 +103,7 @@ function SidebarContents() {
                             <SidebarMenuButton
                                 className={`hover:bg-primaryColor hover:text-white hover:px-4 py-6 font-poppins text-[14px] ${open ? "px-8" : "px-2"
                                     } flex items-center ${pathName === sidebarItem.link
-                                        ? "bg-primaryColor text-primary"
+                                        ? "bg-primaryColor text-primary text-white"
                                         : ""
                                     }`}
                                 onClick={() => handleNavigation(sidebarItem.link)}
